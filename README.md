@@ -22,12 +22,10 @@ Atoraは、単なる観光ガイドではなく、「貴方だけの旅のキュ
 
 ### 2. Personalized List
 ![List View](./images/main_view02.jpg)
-*PHPによるフィルタリングロジックにより、今向き合うべきアーカイブがリスト上部に優先表示されます。*
+
 
 ### 3. Archive Detail & Recommended Route
 ![Modal View](./images/modal_view03.jpg)
-*ピンをクリックすると滑らかにズーム移動。賢人の思想と、その地で辿るべき具体的な「推奨ルート」を提示します。*
-
 
 
 ### 次回トライしたこと（または機能）

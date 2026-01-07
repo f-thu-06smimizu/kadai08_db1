@@ -1,0 +1,277 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300&family=Noto+Serif+JP:wght@200;300;400&display=swap");
+
+/* 全体のリセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* JS版の優しい色合いを再現 */
+  --bg-color: #f8f7f2; /* わずかに温かみのあるオフホワイト */
+  --text-color: #333333; /* 真っ黒すぎない墨色 */
+  --sub-color: #a8a397; /* 落ち着いたベージュグレー */
+  --accent-color: #0d4750; /* 以前使用していた深みのある静かなグリーン */
+}
+
+/* --- 基本のbody（input.php用） --- */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: "Noto Serif JP", serif;
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* input.phpの没入感を出すため、コンテンツが短い時はスクロールを隠す */
+body:not(.scrollable) {
+  overflow: hidden;
+}
+
+/* read.phpなど、スクロールが必要なページ用のクラス */
+body.scrollable {
+  display: block; /* 中央固定を解除 */
+  overflow-y: auto;
+}
+
+.main-wrapper {
+  width: 100%;
+  max-width: 800px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* --- コンテンツ要素のデザイン --- */
+
+.top-label {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 200;
+  font-size: 0.65rem;
+  letter-spacing: 0.8em;
+  text-transform: uppercase;
+  color: var(--sub-color);
+  margin-bottom: 12vh;
+}
+
+h1 {
+  font-weight: 200;
+  font-size: 1.6rem;
+  line-height: 2.4;
+  letter-spacing: 0.25em;
+  margin-bottom: 8vh;
+}
+
+.input-area textarea {
+  width: 100%;
+  max-width: 400px;
+  height: 80px;
+  background: transparent;
+  border: none;
+  border-bottom: 0.5px solid #e0e0e0;
+  font-size: 1.1rem;
+  font-family: inherit;
+  color: var(--text-color);
+  text-align: center;
+  outline: none;
+  padding: 10px 0;
+  transition: border-bottom 1.2s ease;
+}
+
+.input-area textarea:focus {
+  border-bottom: 0.5px solid var(--accent-color);
+}
+
+.meta-info {
+  margin-top: 40px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--sub-color);
+}
+
+.meta-info .label {
+  margin-right: 15px;
+  text-transform: uppercase;
+}
+
+.meta-info select {
+  border: none;
+  background: transparent;
+  font-family: "Noto Serif JP", serif;
+  color: var(--text-color);
+  font-size: 0.8rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.button-wrapper {
+  margin-top: 15vh;
+}
+
+.btn-enter {
+  background: transparent;
+  border: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 200;
+  font-size: 0.75rem;
+  letter-spacing: 0.6em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--text-color);
+  padding: 15px 30px;
+  transition: all 0.8s ease;
+  border: 0.5px solid transparent;
+}
+
+.btn-enter:hover {
+  border: 0.5px solid var(--accent-color);
+  letter-spacing: 0.8em;
+  padding: 15px 45px;
+}
+
+/* --- read.php専用の地図・グリッドレイアウト --- */
+
+#map {
+  height: 500px; /* 地図をしっかり表示 */
+  width: 100vw;
+  margin: 80px 0;
+  filter: grayscale(1) contrast(0.9) brightness(1.02);
+  border-top: 0.5px solid #eee;
+  border-bottom: 0.5px solid #eee;
+  /* 親要素の中央寄せを無視して全幅にする設定 */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.content-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.route-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px 40px;
+  text-align: left;
+}
+
+.route-card {
+  padding-top: 30px;
+  border-top: 0.5px solid #eee;
+  cursor: pointer;
+}
+
+.route-tag {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.3em;
+  color: var(--sub-color);
+  margin-bottom: 15px;
+  display: block;
+  text-transform: uppercase;
+}
+
+.route-title {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 15px;
+  letter-spacing: 0.1em;
+}
+
+.route-desc {
+  font-size: 0.85rem;
+  line-height: 2.1;
+  color: #666;
+  font-weight: 300;
+}
+
+/* --- 共通アニメーション・モーダル --- */
+
+.fade-in {
+  animation: fadeInAnim 3s ease forwards;
+}
+
+@keyframes fadeInAnim {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  padding: 60px 40px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2rem;
+  font-weight: 100;
+  cursor: pointer;
+  color: #999;
+}
+
+.modal-tag {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  color: #999;
+  text-transform: uppercase;
+}
+
+.story-text {
+  font-size: 0.95rem;
+  line-height: 2.2;
+  color: #333;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.btn-plan {
+  margin-top: 60px;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 15px 40px;
+  font-family: "Noto Serif JP";
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+@media (max-width: 768px) {
+  .route-grid {
+    grid-template-columns: 1fr;
+  }
+}
